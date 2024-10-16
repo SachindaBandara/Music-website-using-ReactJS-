@@ -47,6 +47,7 @@ const DisplayAlbum = () => {
         <img className="m-auto w-4" src={assets.clock_icon} alt="" />
       </div>
       <hr />
+      
       {songsData.map((item, index) => (
         <div
           key={index}
