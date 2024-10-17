@@ -3,6 +3,7 @@ import cors from "cors";
 import "dotenv/config";
 import songRouter from "./src/routes/songRoute.js";
 import connectCloudinary from "./src/config/cloudinary.js";
+import connectDB from "./src/config/mongodb.js";
 
 // app config
 const app = express();
