@@ -7,6 +7,7 @@ import AddAlbum from "./pages/AddAlbum";
 import ListSong from "./pages/ListSong";
 import ListAlbum from "./pages/ListAlbum";
 import SlideBar from "./components/SlideBar";
+import NavBar from "./components/NavBar";
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
       <SlideBar />
 
       <div className="flex-1 h-screen overflow-y-scroll bg-[#F3FFF7]">
+        <NavBar/>
         <div className="pt-8 pl-5 sm:pt-12 sm:pl-12">
           <Routes>
             <Route path="/add-song" element={<AddSong />} />
