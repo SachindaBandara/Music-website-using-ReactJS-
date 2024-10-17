@@ -1,28 +1,42 @@
-import React from "react";
+import React, { useState } from "react";
 import { assets } from "../assets/admin-assets/assets";
 
 const AddSong = () => {
+  const [image, setImage] = useState(false);
+  const [song, setSong] = useState(false);
+  const [name, setName] = useState("");
+  const [desc, setDesc] = useState("");
+  const [album, setAlbum] = useState("none");
+  const [loading, setLoading] = useState(false);
+  const [albumData, setAlbumData] = useState([]);
+
+  const onSubmitHandler = async (e) => {
+    e.preventDefault();
+  };
   return (
-    <form className="flex flex-col items-start gap-8 text-gray-600">
+    <form
+      onSubmit={onSubmitHandler}
+      className="flex flex-col items-start gap-8 text-gray-600"
+    >
       <div className="flex gap-8">
         <div className="flex flex-col gap-4">
           <p>Upload song</p>
-          <input type="file" id="song" accept="audio/*" hidden />
+          <input onChange={(e) => setSong(e.target.files[0])} type="file" id="song" accept="audio/*" hidden />
           <label htmlFor="song">
             <img
               className="w-24 cursor-pointer"
-              src={assets.upload_song}
+              src={song ? assets.upload_added : assets.upload_song}
               alt=""
             />
           </label>
         </div>
         <div className="flex flex-col gap-4">
           <p>Upload Image</p>
-          <input type="file" id="image" accept="image/*" hidden />
+          <input onChange={(e) => setImage(e.target.files[0])} type="file" id="image" accept="image/*" hidden />
           <label htmlFor="image">
             <img
               className="w-24 cursor-pointer"
-              src={assets.upload_area}
+              src={image ? URL.createObjectURL(image) : assets.upload_area}
               alt=""
             />
           </label>
