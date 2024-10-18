@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -15,6 +16,17 @@ const ListAlbum = () => {
     }
   };
 
+  const removeAlbum = async (id) => {
+    try {
+      const response = await axios.post(`${url}/api/album/remove`, { id });
+      if (response.data.success) {
+        toast.success(response.data.message);
+        await fetchAlbums();
+      }
+    } catch (error) {
+      toast.error("Error occured");
+    }
+  };
   useEffect(() => {
     fetchAlbums();
   }, []);
@@ -40,7 +52,12 @@ const ListAlbum = () => {
               <p>{item.name}</p>
               <p>{item.desc}</p>
               <input type="color" value={item.bgColour} />
-              <p className="cursor-pointer">x</p>
+              <p
+                className="cursor-pointer"
+                onClick={() => removeAlbum(item._id)}
+              >
+                x
+              </p>
             </div>
           );
         })}
