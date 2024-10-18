@@ -36,7 +36,12 @@ const PlayerContextProvider = (props) => {
   };
 
   const playWithId = async (id) => {
-    await setTrack(songsData[id]);
+    await songsData.map((item) => {
+      if (id === item._id) {
+        setTrack(item);
+      }
+    });
+
     await audioRef.current.play();
     setPlayerStatus(true);
   };
