@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const ListSong = () => {
   const [data, setData] = useState([]);
 
-  const fecthSongs = async () => {
+  const fetchSongs = async () => {
     try {
       const response = await axios.get(`${url}/api/song/list`);
 
@@ -24,7 +24,7 @@ const ListSong = () => {
 
       if (response.data.success) {
         toast.success(response.data.message);
-        await fecthSongs();
+        await fetchSongs();
       }
     } catch (error) {
       toast.error("Error occured");
@@ -32,7 +32,7 @@ const ListSong = () => {
   };
 
   useEffect(() => {
-    fecthSongs();
+    fetchSongs();
   }, []);
   return (
     <div>

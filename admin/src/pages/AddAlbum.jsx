@@ -19,7 +19,7 @@ const AddAlbum = () => {
       formData.append("name", name);
       formData.append("desc", desc);
       formData.append("image", image);
-      formData.append("bgColour", colour);
+      formData.append("bgColour", Colour);
 
       const response = await axios.post(`${url}/api/album/add`, formData);
       if (response.data.success) {
@@ -48,7 +48,7 @@ const AddAlbum = () => {
       <div className="flex flex-col gap-4">
         <p>Upload image</p>
         <input
-          onChange={(e) => setImage(e.target.file[0])}
+          onChange={(e) => setImage(e.target.files[0])}
           type="file"
           id="image"
           accept="image/*"
@@ -89,7 +89,7 @@ const AddAlbum = () => {
         <p>Background Colour</p>
         <input
           onChange={(e) => setColour(e.target.value)}
-          value={colour}
+          value={Colour}
           type="color"
         />
       </div>
