@@ -47,19 +47,23 @@ const PlayerContextProvider = (props) => {
   };
 
   const previous = async () => {
-    if (track.id > 0) {
-      await setTrack(songsData[track.id - 1]);
-      await audioRef.current.play();
-      setPlayerStatus(true);
-    }
+    songsData.map(async (item, index) => {
+      if (track._id === item._id && index > 0) {
+        await setTrack(songsData[index - 1]);
+        await audioRef.current.play();
+        setPlayerStatus(true);
+      }
+    });
   };
 
   const next = async () => {
-    if (track.id < songsData.length - 1) {
-      await setTrack(songsData[track.id + 1]);
-      await audioRef.current.play();
-      setPlayerStatus(true);
-    }
+    songsData.map(async (item, index) => {
+      if (track._id === item._id && index < songsData.length) {
+        await setTrack(songsData[index + 1]);
+        await audioRef.current.play();
+        setPlayerStatus(true);
+      }
+    });
   };
 
   const seekSong = async (e) => {
